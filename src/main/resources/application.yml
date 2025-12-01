@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: ${APP_VERSION}
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: question-service
+          uri: lb://question-service
+          predicates:
+            - Path=/question-service/**
+          filters:
+              - StripPrefix=1
+        - id: quiz-service
+          uri: lb://quiz-service
+          predicates:
+            - Path=/quiz-service/**
+          filters:
+              - StripPrefix=1
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8090
