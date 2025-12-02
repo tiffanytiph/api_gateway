@@ -1,6 +1,7 @@
 Run this docker-compose.yml in the parent folder
 (copy paste code below)
 
+```yaml
 version: "3.9"
 
 services:
