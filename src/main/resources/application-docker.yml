@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: ${APP_VERSION}
   application:
     name: api-gateway
 
@@ -28,6 +26,9 @@ server:
   port: 8090
 
 eureka:
+  instance:
+    instance-id: api-gateway
+    hostname: api-gateway
   client:
     register-with-eureka: true
     fetch-registry: true
